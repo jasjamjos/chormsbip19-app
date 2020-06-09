@@ -3,3 +3,7 @@
 @tailwind component;
 
 @tailwind utilities;
+
+body {
+    @apply bg-gray-200;
+}

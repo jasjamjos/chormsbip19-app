@@ -1,12 +1,47 @@
 import React, { Component } from 'react';
 
+import { Cards, CountryPicker } from './components';
+import { fetchData } from './api';
+
 import './assets/css/main.css'
 
 class App extends Component {
+
+    state = {
+        data: {}
+    }
+
+    async componentDidMount() {
+        const fetchedData = await fetchData();
+
+        this.setState({ data: fetchedData })
+    }
+
     render() {
+        const { data } = this.state;
+        const { lastUpdate } = data;
+
         return (
-            <div>
-                <h1 className="p-2 rounded bg-gray-400 m-5">Froggy Chair</h1>
+            <div className="w-full h-full sm:h-screen">
+                <div className="flex items-center justify-center h-full">
+                    <div className="max-w-xl bg-white px-5 py-8 h-full w-full sm:w-auto sm:h-auto rounded text-gray-700">
+                        <div className="text-center">
+                            <div className="font-bold text-3xl">
+                                CHORMSBIP-19
+                            </div>
+                            <div>
+                                <p className="text-sm text-gray-600"></p>
+                            </div>
+                        </div>
+
+                        <CountryPicker />
+                        <Cards data={data}/>
+
+                        <div className="text-sm text-center">
+                            as of { lastUpdate ? new Date(lastUpdate).toDateString() : 'loading'}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
