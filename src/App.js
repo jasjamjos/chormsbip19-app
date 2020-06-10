@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Cards, CountryPicker } from './components';
+import { Cards, Details, CountryPicker } from './components';
 import { fetchData } from './api';
 
 import './assets/css/main.css'
@@ -18,8 +18,8 @@ class App extends Component {
     }
 
     render() {
-        const { data } = this.state;
-        const { lastUpdate } = data;
+        const { data, data:{ lastUpdate } } = this.state;
+
 
         return (
             <div className="w-full h-full sm:h-screen">
@@ -27,7 +27,7 @@ class App extends Component {
                     <div className="max-w-xl bg-white px-5 py-8 h-full w-full sm:w-auto sm:h-auto rounded text-gray-700">
                         <div className="text-center">
                             <div className="font-bold text-3xl">
-                                CHORMSBIP-19
+                                CH<span className="text-red-500">Ø</span>RMSBIP-19
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600"></p>
@@ -36,9 +36,10 @@ class App extends Component {
 
                         <CountryPicker />
                         <Cards data={data}/>
+                        <Details />
 
                         <div className="text-sm text-center">
-                            as of { lastUpdate ? new Date(lastUpdate).toDateString() : 'loading'}
+                            as of {lastUpdate ? new Date(lastUpdate).toDateString() : 'Loading...'}
                         </div>
                     </div>
                 </div>
