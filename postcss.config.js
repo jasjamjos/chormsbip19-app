@@ -5,6 +5,10 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
         './public/index.html',
     ],
 
+    options: {
+        whitelist: ['bg-red-100', 'bg-blue-100', 'bg-green-100', 'text-red-900', 'text-blue-900', 'text-green-900', 'px-4'],
+    },
+
     css: ['./src/assets/css/tailwind.css'],
 
     // Default tailwind purgecss config
